@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('job_attribute_values', function (Blueprint $table) {
-            $table->id();
+        Schema::create('job_attribute_values', function (Blueprint $table) {
+            $table->id(); 
             $table->foreignId('working_job_id')->constrained('working_jobs')->onDelete('cascade');
             $table->foreignId('attribute_id')->constrained('attributes')->onDelete('cascade');
             $table->text('value');
@@ -20,9 +20,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('job_attribute_values');

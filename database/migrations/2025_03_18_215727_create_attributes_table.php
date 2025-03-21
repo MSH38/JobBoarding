@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('attributes', function (Blueprint $table) {
-            $table->id();
+        Schema::create('attributes', function (Blueprint $table) {
+            $table->id(); // Adds the auto-incrementing primary key
             $table->string('name')->unique();
             $table->enum('type', ['text', 'number', 'boolean', 'date', 'select']);
             $table->json('options')->nullable();
-            $table->timestamps();
+            $table->timestamps(); // Adds created_at and updated_at columns
         });
     }
 
@@ -25,7 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attributes');
-
+        Schema::dropIfExists('attributes'); // Drops the attributes table if it exists
     }
 };
